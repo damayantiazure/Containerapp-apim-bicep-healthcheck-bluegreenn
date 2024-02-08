@@ -7,8 +7,6 @@ param apiName string
 param azureDevOpsEndpoint string = 'https://dev.azure.com/moim/_apis/connectionData'
 param azureDevOpsEndpointKeyName string = 'azuredevopsendpoint'
 param backendHostKeyName string = 'containerappbackendhostname'
-param apiVersion string
-param apiRevision string
 
 resource environment 'Microsoft.App/managedEnvironments@2022-03-01' existing = {
   name: envrionmentName  
@@ -51,9 +49,8 @@ module neptuneApiVersionSet 'neptune-product/versionSets/neptune-version-set.bic
     name: 'neptune-version-set'
     apimServiceName: apimServiceName
     description: 'Version set for Neptune API'
-    versionHeaderName: 'api-version' 
-    apiRevision: apiRevision
-    apiVersion: apiVersion   
+    versionHeaderName: 'api-version'
+      
   }
   dependsOn: [
     apiManagementService
