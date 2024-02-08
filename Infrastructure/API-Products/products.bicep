@@ -7,6 +7,8 @@ param apiName string
 param azureDevOpsEndpoint string = 'https://dev.azure.com/moim/_apis/connectionData'
 param azureDevOpsEndpointKeyName string = 'azuredevopsendpoint'
 param backendHostKeyName string = 'containerappbackendhostname'
+param apiVersion string
+param apiVersion string
 
 resource environment 'Microsoft.App/managedEnvironments@2022-03-01' existing = {
   name: envrionmentName  
