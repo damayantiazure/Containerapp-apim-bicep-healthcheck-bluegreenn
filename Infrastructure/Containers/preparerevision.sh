@@ -15,4 +15,4 @@ sed -i "s/PREV/$prevNameWithoutQuites/g" Infrastructure/Containers/$fileName
 sed -i "s/NEXT/$nextRevisionName/g" Infrastructure/Containers/$fileName 
 
 
-cat Infrastructure/Containers/$FileName
+cat Infrastructure/Containers/$fileName
