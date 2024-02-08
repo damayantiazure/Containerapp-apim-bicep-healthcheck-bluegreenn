@@ -4,6 +4,8 @@ param serviceUrl string
 param productName string 
 param apiName string 
 param versionSetId string
+param apiVersion string
+param apiRevision string
 
 resource neptuneProduct 'Microsoft.ApiManagement/service/products@2023-03-01-preview' = {
   name: '${apimServiceName}/${productName}'
