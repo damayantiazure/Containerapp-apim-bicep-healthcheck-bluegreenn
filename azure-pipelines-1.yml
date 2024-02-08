@@ -30,8 +30,8 @@ variables:
  apimServiceName: "$(APP_NAME)apim$(APP_ENV)13"
  productName: "$(APP_NAME)-product"
  apiName: "$(APP_NAME)-api"
- apiVersion: "v1-preview-&(tag)"
- apiRevision: $(tag)
+ apiVersion: "v1-preview-100"
+ apiRevision: "100"
 
 
 steps:      
