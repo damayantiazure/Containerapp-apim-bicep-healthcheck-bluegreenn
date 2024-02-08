@@ -3,11 +3,12 @@ param apimServiceName string
 param productName string = 'neptune-product'
 param apiName string = 'neptune-api'
 param serviceUrl string
+param apiRevision string
 param apiVersion string
 param apiVersionSetId string
 param apiVersionDescription string = ''
 
-param apiRevision string = '1'
+// param apiRevision string = '1'
 param apiRevisionDescription string = ''
 param isCurrent bool = true
 param apiType string = 'http'
