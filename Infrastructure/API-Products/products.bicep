@@ -51,7 +51,9 @@ module neptuneApiVersionSet 'neptune-product/versionSets/neptune-version-set.bic
     name: 'neptune-version-set'
     apimServiceName: apimServiceName
     description: 'Version set for Neptune API'
-    versionHeaderName: 'api-version'    
+    versionHeaderName: 'api-version' 
+    apiRevision: apiRevision
+    apiVersion: apiVersion   
   }
   dependsOn: [
     apiManagementService
