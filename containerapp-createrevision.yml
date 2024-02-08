@@ -54,38 +54,30 @@ steps:
       docker push $(registry)/$(imageName):$(tag)     
 
 
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'masterconnection'
-#     scriptType: 'bash'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: |
-#       echo "Starting script...Creating revision"
-#       az config set extension.use_dynamic_install=yes_without_prompt
-#       az extension add -n containerapp
-      
-#       nextRevisionName="$(imageName)--$(tag)"
-#       previousRevisionName=$(az containerapp revision list -n $(imageName) -g $(resourceGroupName) --query '[0].name')
-      
-#       prevNameWithoutQuites=$(echo $previousRevisionName | tr -d "\"")        # using sed echo $pname | sed "s/\"//g"
-#       echo 'Previous revision name: ' $previousRevisionName
-#       echo 'Next revision name: ' $nextRevisionName
-      
-#       sed -i "s/PREV/$previousRevisionName/g" Infrastructure/Containers/app.bicep 
-#       sed -i "s/NEXT/$nextRevisionName/g" Infrastructure/Containers/app.bicep      
-      
-#       cat Infrastructure/Containers/app.bicep
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'masterconnection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    scriptPath: |
-     sh  /Infrastructure/prepare-revisions.sh $(tag) $(fileName) $(imageName) $(resourceGroupName)
-  env:
-   fileName: $(fileName)
-   tag: $(tag)
+    inlineScript: |
+      echo "Starting script...Creating revision"
+      az config set extension.use_dynamic_install=yes_without_prompt
+      az extension add -n containerapp
+      
+      nextRevisionName="$(imageName)--$(tag)"
+      previousRevisionName=$(az containerapp revision list -n $(imageName) -g $(resourceGroupName) --query '[0].name')
+      
+      prevNameWithoutQuites=$(echo $previousRevisionName | tr -d "\"")        # using sed echo $pname | sed "s/\"//g"
+      echo 'Previous revision name: ' $previousRevisionName
+      echo 'Next revision name: ' $nextRevisionName
+      
+      sed -i "s/PREV/$previousRevisionName/g" Infrastructure/Containers/app.bicep 
+      sed -i "s/NEXT/$nextRevisionName/g" Infrastructure/Containers/app.bicep      
+      
+      cat Infrastructure/Containers/app.bicep
+      echo "Configure Container app for compliancewebapi"
+      az deployment group create --resource-group $(resourceGroupName) --template-file 'Infrastructure/Containers/app.bicep' --parameters location=$(location) imageName=$(imageName) tagName=$(tag) containerRegistryName=$(containerRegistryName) acaEnvName=$(acaEnvName) uamiName=$(uamiName) appInsightName=$(appInsightName)
+
 
   
       
