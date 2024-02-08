@@ -32,13 +32,13 @@ module neptuneWebApi 'apis/neptune-webapi.bicep' = {
     productName: productName
     apiName: apiName
     serviceUrl: serviceUrl
-    apiRevision: '1'
+    apiRevision: apiRevision
     apiRevisionDescription: 'A new revision of the API'
     isCurrent: true
     apiType: 'http'
     description: 'Neptune Web API'
     displayName: 'Neptune Web API'
-    apiVersion: 'v1-preview-01'
+    apiVersion: apiVersion
     apiVersionDescription: 'A preview version of the API'
     apiVersionSetId: versionSetId
   }
