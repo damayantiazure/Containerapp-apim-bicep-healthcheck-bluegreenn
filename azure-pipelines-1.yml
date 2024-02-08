@@ -103,6 +103,9 @@ steps:
       echo "Invoking https://$(imageName)---$(labelgreen).$APP_DOMAIN/health"
       status_code=$(curl --write-out %{http_code} --silent --output /dev/null "https://$(imageName)---$(labelgreen).$APP_DOMAIN/health/health")
       echo "status_code: $status_code"
+
+      #Test the green lable FQDN
+      # curl -s https://(imageName)---$(labelgreen).$APP_DOMAIN/api/env | jq | grep COMMIT
       
       #Test the green lable FQDN      
       
